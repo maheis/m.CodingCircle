@@ -1,3 +1,3 @@
-module github.com/maheis/CodingCircle/231001
+module github.com/maheis/CodingCircle/231001_Playlist-i
 
 go 1.21.1

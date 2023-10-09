@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/maheis/CodingCircle/231001_/trie"
+	"github.com/maheis/CodingCircle/231001_Trie/trie"
 )
 
 // 01.10.2023 - https://www.youtube.com/watch?v=wklh-1YTzmM
