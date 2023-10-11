@@ -13,7 +13,7 @@ import (
 //
 //Beispiel:
 // [17, 2, 8, 27, 12, 9]
-// => [17, 9.5, 8, 12, 12, 10.5]
+// => [17, 9.5, 8, 12.5, 12, 10.5]
 //
 //Definition Median
 // Der Wert, der genau in der Mitte einer Datenverteilung liegt, nennt sich Median oder Zentralwert.
