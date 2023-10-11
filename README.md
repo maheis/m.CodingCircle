@@ -1,2 +1,2 @@
 # CodingCircle
-in diesem repository veröffentlcihe ich meine lösungen zu den aufgaben des the native web coding-circle
+in diesem repository veröffentliche ich meine lösungen zu den aufgaben des [the native web](https://thenativeweb.io/)https://thenativeweb.io/ coding-circle
