@@ -30,7 +30,7 @@ import (
 
 func main() {
 	//Aufgabestellung:
-	// values := []int{17, 2, 8, 27, 12, 9}
+	values := []int{17, 2, 8, 27, 12, 9}
 
 	//Random
 	// cnt := 10000
