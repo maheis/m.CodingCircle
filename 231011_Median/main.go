@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
-	"sort"
+	"time"
+
+	"github.com/maheis/CodingCircle/231011_Median/slice"
 )
 
 // 11.10.2023 - https://www.youtube.com/watch?v=28ad9BYDHlI
@@ -27,34 +29,21 @@ import (
 //
 
 func main() {
+	//Aufgabestellung:
 	values := []int{17, 2, 8, 27, 12, 9}
+
+	//Random
+	// var values []int
+	// for i := 0; i < 1000; i++ {
+	// 	values = append(values, rand.Intn(100))
+	// }
+
 	fmt.Println("values: ", values)
 
-	medians := continuousMedian(values)
+	//slice
+	start := time.Now()
+	medians := slice.ContinuousMedian(values)
+	end := time.Now()
 	fmt.Println(" => medians: ", medians)
-}
-
-func continuousMedian(values []int) []float64 {
-	// Partial das Array aufspalten um den Kontinuierlichen Median zu berechnen
-	partitions := make([]int, 0, len(values))
-	// Liste der Medians
-	medians := make([]float64, 0, len(values))
-
-	for i := 0; i < len(values); i++ {
-		partitions = append(partitions, values[i])
-		sort.Ints(partitions) //Sotierte Liste für den Median
-		medians = append(medians, getMedian(partitions))
-	}
-
-	return medians
-}
-
-func getMedian(values []int) float64 {
-	// Grade
-	if len(values)%2 == 0 {
-		// Mittelwert der beiden mittleren Werte
-		return float64(values[len(values)/2-1]+values[len(values)/2]) / 2
-	}
-	// Ungrade
-	return float64(values[len(values)/2])
+	fmt.Println("slice needed:", end.Sub(start))
 }
