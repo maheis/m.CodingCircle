@@ -1,11 +1,15 @@
 package main
 
-// 11.10.2023 - https://www.youtube.com/watch?v=28ad9BYDHlI
+//Mögliche Lösung über eine Map
+// Über eine Map nicht sinnvoll zu realisieren. Map müsste für Sort in ein Slice überführt werden...
+// Würde man das machen, wäre es aber auch nicht schneller als die slice-Variante.
+// Es könnte der Key vewendet werden als Value. Dann würde sich die Map automatisch sortieren.
+// Die Map müsste aber von vorne durchlaufen werden, außerdem gehen keine doppelten Werte.
 
+//Mögliche Lösung über zwei Listen
 // Die Idee ist, dass wir die Liste der Zahlen in zwei Hälften aufteilen.
 // Die linke Hälfte enthält alle Zahlen, die kleiner als der Median sind.
 // Die rechte Hälfte enthält alle Zahlen, die größer als der Median sind.
-// Die linke Hälfte wird als Max-Heap implementiert, die rechte Hälfte als Min-Heap.
-// Der Median ist dann entweder die Wurzel des Max-Heaps oder die Wurzel des Min-Heaps.
-// Wenn die Anzahl der Zahlen gerade ist, dann ist der Median der Durchschnitt der beiden Wurzeln.
-//
+// Die linke Hälfte wird als Liste implementiert, die rechte Hälfte als Liste.
+// Der Median ist dann entweder das letzte Element der linken Liste oder das erste Element der rechten Liste.
+// Wenn die Anzahl der Zahlen gerade ist, dann ist der Median der Durchschnitt der beiden Elemente.
