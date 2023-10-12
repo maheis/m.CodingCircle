@@ -1,6 +1,21 @@
 package slice
 
-import "sort"
+import (
+	"fmt"
+	"sort"
+	"time"
+)
+
+func Run(values []int) {
+	fmt.Println("slice")
+	start := time.Now()
+	medians := ContinuousMedian(values)
+	end := time.Now()
+	if len(medians) < 20 {
+		fmt.Println(" => medians: ", medians)
+	}
+	fmt.Println(" => needed:", end.Sub(start))
+}
 
 func ContinuousMedian(values []int) []float64 {
 	// Partial das Array aufspalten um den Kontinuierlichen Median zu berechnen

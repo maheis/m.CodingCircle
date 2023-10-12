@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"time"
+	"math/rand"
 
+	"github.com/maheis/CodingCircle/231011_Median/chained"
 	"github.com/maheis/CodingCircle/231011_Median/slice"
 )
 
@@ -33,17 +34,14 @@ func main() {
 	values := []int{17, 2, 8, 27, 12, 9}
 
 	//Random
-	// var values []int
-	// for i := 0; i < 1000; i++ {
-	// 	values = append(values, rand.Intn(100))
-	// }
+	for i := 0; i < 10000; i++ {
+		values = append(values, rand.Intn(100))
+	}
 
-	fmt.Println("values: ", values)
+	if len(values) < 20 {
+		fmt.Println("values: ", values)
+	}
 
-	//slice
-	start := time.Now()
-	medians := slice.ContinuousMedian(values)
-	end := time.Now()
-	fmt.Println(" => medians: ", medians)
-	fmt.Println("slice needed:", end.Sub(start))
+	slice.Run(values)
+	chained.Run(values)
 }
