@@ -11,7 +11,7 @@ func Run(values []int) {
 	start := time.Now()
 	medians := ContinuousMedian(values)
 	end := time.Now()
-	if len(medians) < 20 {
+	if len(medians) < 42 {
 		fmt.Println(" => medians: ", medians)
 	}
 	fmt.Println(" => needed:", end.Sub(start))

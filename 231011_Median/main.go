@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math/rand"
 
 	"github.com/maheis/CodingCircle/231011_Median/chained"
 	"github.com/maheis/CodingCircle/231011_Median/slice"
@@ -31,14 +30,16 @@ import (
 
 func main() {
 	//Aufgabestellung:
-	values := []int{17, 2, 8, 27, 12, 9}
+	// values := []int{17, 2, 8, 27, 12, 9}
 
 	//Random
-	for i := 0; i < 10000; i++ {
-		values = append(values, rand.Intn(100))
-	}
+	// cnt := 10000
+	// values := make([]int, 0, cnt)
+	// for i := 0; i < cnt; i++ {
+	// 	values = append(values, rand.Intn(100))
+	// }
 
-	if len(values) < 20 {
+	if len(values) < 42 {
 		fmt.Println("values: ", values)
 	}
 

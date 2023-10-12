@@ -1,4 +1,4 @@
-package heap
+package main
 
 // 11.10.2023 - https://www.youtube.com/watch?v=28ad9BYDHlI
 
