@@ -34,14 +34,7 @@ func initList() *element {
 func printList(list *element, head string) {
 	fmt.Print(head)
 
-	//erstes Element suchen, da ich nicht weiß wo ich in der Liste stehe!
-	for {
-		if list.prev == nil {
-			break
-		}
-		list = list.prev
-	}
-
+	list = list.head //erstes Element laden, da ich nicht weiß wo ich in der Liste stehe!
 	for {
 		//wenn es ein nächstes Element gibt
 		if list.next == nil {
