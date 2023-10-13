@@ -3,7 +3,7 @@ package main
 //Mögliche Lösung über eine Map
 // Über eine Map nicht sinnvoll zu realisieren. Map müsste für Sort in ein Slice überführt werden...
 // Würde man das machen, wäre es aber auch nicht schneller als die slice-Variante.
-// Es könnte der Key vewendet werden als Value. Dann würde sich die Map automatisch sortieren.
+// Es könnte der Key als Value verwendet werden. Dann würde sich die Map automatisch sortieren.
 // Die Map müsste aber von vorne durchlaufen werden, außerdem gehen keine doppelten Werte.
 
 //Mögliche Lösung über zwei Listen
@@ -15,6 +15,7 @@ package main
 // Wenn die Anzahl der Zahlen gerade ist, dann ist der Median der Durchschnitt der beiden Elemente.
 
 //Sortierter Baum ?
+//
 
 //Idee: Kette mit Forward/Backward spulen zu können?!
 
