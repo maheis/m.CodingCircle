@@ -13,3 +13,10 @@ package main
 // Die linke Hälfte wird als Liste implementiert, die rechte Hälfte als Liste.
 // Der Median ist dann entweder das letzte Element der linken Liste oder das erste Element der rechten Liste.
 // Wenn die Anzahl der Zahlen gerade ist, dann ist der Median der Durchschnitt der beiden Elemente.
+
+//Sortierter Baum ?
+
+//Idee: Kette mit Forward/Backward spulen zu können?!
+
+//Grundsätzlcihe Frage, braucht man alle Werte um den Median zu berechnen?
+//Oder Reicht ein Subset um den Median herum aus?
