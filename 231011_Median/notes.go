@@ -14,8 +14,9 @@ package main
 // Der Median ist dann entweder das letzte Element der linken Liste oder das erste Element der rechten Liste.
 // Wenn die Anzahl der Zahlen gerade ist, dann ist der Median der Durchschnitt der beiden Elemente.
 
-//Sortierter Baum ?
-//
+// Binärer Suchbaum ?
+
+// AVL-Baum ?
 
 //Idee: Kette mit Forward/Backward spulen zu können?!
 
