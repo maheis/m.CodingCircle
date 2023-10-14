@@ -93,14 +93,14 @@ func findBSMedian(root *bstNode, count *int, valA *int, valB *int) {
 	findBSMedian(root.right, count, valA, valB)
 }
 
-func ContinuousMedian(vals []int) []float64 {
+func ContinuousMedian(values []int) []float64 {
 	// Partial das Array aufspalten um den Kontinuierlichen Median zu berechnen
 	partitions := initBST()
 	// Liste der Medians
-	medians := make([]float64, 0, len(vals))
+	medians := make([]float64, 0, len(values))
 
-	for i := 0; i < len(vals); i++ {
-		partitions = appendBSTree(partitions, vals[i])
+	for _, value := range values {
+		partitions = appendBSTree(partitions, value)
 		partitions.count++
 		medians = append(medians, Median(partitions))
 	}

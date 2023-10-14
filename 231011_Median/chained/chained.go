@@ -89,8 +89,8 @@ func ContinuousMedian(values []int) []float64 {
 	// Liste der Medians
 	medians := make([]float64, 0, len(values))
 
-	for i := 0; i < len(values); i++ {
-		partitions = appendSortlist(partitions, values[i])
+	for _, value := range values {
+		partitions = appendSortlist(partitions, value)
 		medians = append(medians, Median(partitions))
 	}
 
