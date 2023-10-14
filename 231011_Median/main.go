@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 
+	"github.com/maheis/CodingCircle/231011_Median/bstree"
 	"github.com/maheis/CodingCircle/231011_Median/chained"
 	"github.com/maheis/CodingCircle/231011_Median/slice"
 )
@@ -33,7 +34,7 @@ func main() {
 	values := []int{17, 2, 8, 27, 12, 9}
 
 	//Random
-	// cnt := 10000
+	// cnt := 100
 	// values := make([]int, 0, cnt)
 	// for i := 0; i < cnt; i++ {
 	// 	values = append(values, rand.Intn(100))
@@ -45,4 +46,5 @@ func main() {
 
 	slice.Run(values)
 	chained.Run(values)
+	bstree.Run(values)
 }
