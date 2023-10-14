@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 
 	"github.com/maheis/CodingCircle/231011_Median/bstree"
 	"github.com/maheis/CodingCircle/231011_Median/chained"
@@ -31,14 +32,15 @@ import (
 
 func main() {
 	//Aufgabestellung:
-	values := []int{17, 2, 8, 27, 12, 9}
+	// values := []int{17, 2, 8, 27, 12, 9}
+	// values := []int{17, 2, 8, 27, 12, 9, 13, 25, 29, 1, 19, 20, 33, 42, 6, 11, 49, 18}
 
 	//Random
-	// cnt := 100
-	// values := make([]int, 0, cnt)
-	// for i := 0; i < cnt; i++ {
-	// 	values = append(values, rand.Intn(100))
-	// }
+	cnt := 100
+	values := make([]int, 0, cnt)
+	for i := 0; i < cnt; i++ {
+		values = append(values, rand.Intn(100))
+	}
 
 	if len(values) < 42 {
 		fmt.Println("values: ", values)
