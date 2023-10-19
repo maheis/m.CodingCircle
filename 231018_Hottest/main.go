@@ -26,12 +26,20 @@ import "fmt"
 //
 //Lösung:
 //
+//
+//Idee:
+// Mit Channels arbeiten? Die auf den nächsten Value warten? 🤔 Wenn 3 voll geben sie zurück...
+// Rekursiv von hinten auflösen?
 
 func main() {
 	v := []int{27, 9, 17, 2, 12, 8}
+	// 		   27, 9, 17
+	// 			   9, 17, 2
+	//				  17, 2, 12
+	// 					  2, 12, 8
 	k := 3
 
-	var maxis []int
+	result := make([]int, 0, len(v)-k+1)
 
 	if len(v) > k {
 		// Schleife soll abzüglich der Fenstergröße k laufen
@@ -43,7 +51,7 @@ func main() {
 					max = v[j]
 				}
 			}
-			maxis = append(maxis, max)
+			result = append(result, max)
 
 			// Im nächsten durchlauf wird das Fenster 1 nach vorne geschoben...
 		}
@@ -52,5 +60,5 @@ func main() {
 	//Ausgabe
 	fmt.Println("V = ", v)
 	fmt.Println("k = ", k)
-	fmt.Println(" => ", maxis)
+	fmt.Println(" => ", result)
 }
