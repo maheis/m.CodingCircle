@@ -27,39 +27,27 @@ import "fmt"
 //Lösung:
 //
 
-//
-
 func main() {
-	values := []int{27, 9, 17, 2, 12, 8}
-	fmt.Println("V = ", values)
+	v := []int{27, 9, 17, 2, 12, 8}
+	fmt.Println("V = ", v)
 	k := 3
 	fmt.Println("k = ", k)
 
-	var partitions []int
 	var maxis []int
 
-	if len(values) > k {
-		// Anfang des ersten Fenster erstellen
-		for i := 0; i < k-1; i++ {
-			partitions = append(partitions, values[i])
-		}
-
-		for i := k - 1; i < len(values); i++ {
-			// Wert ins Fenster einfügen
-			partitions = append(partitions, values[i])
-
-			// Maximum im Fenster finden
-			max := 0
-			for _, v := range partitions {
-				if v > max {
-					max = v
+	if len(v) > k {
+		// Schleife soll abzüglich der Fenstergröße k laufen
+		for i := 0; i < len(v)-k+1; i++ {
+			// Maximalwert im Fensters ermitteln, dazu die Fenstergröße voreilen
+			max := v[i]
+			for j := i + 1; j < i+k; j++ {
+				if v[j] > max {
+					max = v[j]
 				}
 			}
 			maxis = append(maxis, max)
 
-			// Ein Element aus dem Fenster entfernen
-			partitions = partitions[1:]
-
+			// Im nächsten durchlauf wird das Fenster 1 nach vorne geschoben...
 		}
 	}
 
