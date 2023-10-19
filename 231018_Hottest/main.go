@@ -29,9 +29,7 @@ import "fmt"
 
 func main() {
 	v := []int{27, 9, 17, 2, 12, 8}
-	fmt.Println("V = ", v)
 	k := 3
-	fmt.Println("k = ", k)
 
 	var maxis []int
 
@@ -51,5 +49,8 @@ func main() {
 		}
 	}
 
+	//Ausgabe
+	fmt.Println("V = ", v)
+	fmt.Println("k = ", k)
 	fmt.Println(" => ", maxis)
 }
