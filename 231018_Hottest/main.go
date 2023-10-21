@@ -1,18 +1,22 @@
 package main
 
-import "fmt"
+import (
+	"container/list"
+	"fmt"
+	"time"
+)
 
 // 18.10.2023 - https://www.youtube.com/watch?v=0QPK9X1PtEE
 
-//Aufgabenstellung:
+// Aufgabenstellung:
 // Gegeben sind eine Liste V und eine Ganzzahl k. Ermittle das laufende maximum für die Fenstergröße k.
-//
-//Beispiel:
+
+// Beispiel:
 // V = [ 27, 9, 17, 2, 12, 8 ]
 // k = 3
 // => [ 27, 17, 17, 12 ]
-//
-//Bedingungen:
+
+// Bedingungen:
 // Die Laufzeit soll O(n) betragen, der Speicherbedarf soll O(k) betragen.
 //
 //Hinweis:
@@ -26,39 +30,47 @@ import "fmt"
 //
 //Lösung:
 //
-//
-//Idee:
-// Mit Channels arbeiten? Die auf den nächsten Value warten? 🤔 Wenn 3 voll geben sie zurück...
-// Rekursiv von hinten auflösen?
 
 func main() {
-	v := []int{27, 9, 17, 2, 12, 8}
+	// v := []int{27, 9, 17, 2, 12, 8}
 	// 		   27, 9, 17
 	// 			   9, 17, 2
 	//				  17, 2, 12
 	// 					  2, 12, 8
+	// => [ 27 17 17 12 ]
+	v := []int{27, 9, 17, 2, 12, 8, 9, 10, 25, 29, 3, 8, 9, 8, 10}
+	// => [27 17 17 12 12 10 25 29 29 29 9]
 	k := 3
 
 	result := make([]int, 0, len(v)-k+1)
+	var que list.List
 
-	if len(v) > k {
-		// Schleife soll abzüglich der Fenstergröße k laufen
-		for i := 0; i < len(v)-k+1; i++ {
-			// Maximalwert im Fensters ermitteln, dazu die Fenstergröße voreilen
-			max := v[i]
-			for j := i + 1; j < i+k; j++ {
-				if v[j] > max {
-					max = v[j]
-				}
-			}
-			result = append(result, max)
+	start := time.Now()
+	//Itteriere durch die Liste...
+	for i, n := range v {
+		// Wenn der Zeiger aus den Fenster läuft, entferne das Element
+		for que.Len() > 0 && que.Front().Value.(int) <= i-k {
+			que.Remove(que.Front())
+		}
 
-			// Im nächsten durchlauf wird das Fenster 1 nach vorne geschoben...
+		// Entferne das letzte Elemente,wenn es kleiner als das aktuelle Element ist
+		for que.Len() > 0 && v[que.Back().Value.(int)] <= n {
+			que.Remove(que.Back())
+		}
+
+		// Füge das aktuelle Element hinzu
+		que.PushBack(i)
+
+		// Füge das Maximum zum Ergebnis hinzu
+		if i >= k-1 {
+			result = append(result, v[que.Front().Value.(int)])
 		}
 	}
+	end := time.Now()
 
 	//Ausgabe
 	fmt.Println("V = ", v)
 	fmt.Println("k = ", k)
 	fmt.Println(" => ", result)
+	fmt.Println("needed: ", end.Sub(start))
 }
