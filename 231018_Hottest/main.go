@@ -29,6 +29,13 @@ import (
 // erhöht wird, sollte der Speicherbedarf des Algorithmus auch um den Faktor k erhöht werden.
 //
 //Lösung:
+// Es wird das Fenster betrachtet nicht die Werte. Dazu wird eine Que verwendet, die die Indizes der
+// Elemente enthält. Die Que ist sortiert, so dass das erste Element immer das größte Element des aktuellen Fensters ist.
+// Das nachfolgende Element enthält das größte Element für das Nachfolgende Fenster.
+// Wenn das Fenster sich bewegt, wird das erste Element entfernt, wenn es aus dem Fenster läuft.
+// Wenn ein neues Element hinzugefügt wird, wird das letzte Element entfernt, wenn es kleiner als das neue Element ist.
+// Die Liste enthält maximal k Elemente, so dass der Speicherbedarf O(k) ist.
+// Die Liste wird maximal n mal durchlaufen, so dass die Laufzeit O(n) ist.
 //
 
 func main() {
@@ -39,7 +46,7 @@ func main() {
 	// 					  2, 12, 8
 	// => [ 27 17 17 12 ]
 	v := []int{27, 9, 17, 2, 12, 8, 9, 10, 25, 29, 3, 8, 9, 8, 10}
-	// => [27 17 17 12 12 10 25 29 29 29 9]
+	// => [27 17 17 12 12 10 25 29 29 29 9 9 10]
 	k := 3
 
 	result := make([]int, 0, len(v)-k+1)
@@ -53,7 +60,7 @@ func main() {
 			que.Remove(que.Front())
 		}
 
-		// Entferne das letzte Elemente,wenn es kleiner als das aktuelle Element ist
+		// Entferne das letzte Elemente, wenn es kleiner als das aktuelle Element ist
 		for que.Len() > 0 && v[que.Back().Value.(int)] <= n {
 			que.Remove(que.Back())
 		}
