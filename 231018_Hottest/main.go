@@ -19,7 +19,7 @@ import (
 // Bedingungen:
 // Die Laufzeit soll O(n) betragen, der Speicherbedarf soll O(k) betragen.
 //
-//Hinweis:
+// Hinweis:
 // Ein Algorithmus mit einer Laufzeit von O(n) hat eine lineare Laufzeit, die proportional zur Größe
 // der Eingabe ist. Das bedeutet, dass die Laufzeit des Algorithmus linear mit der Größe der Eingabe wächst.
 // Wenn die Größe der Eingabe um den Faktor k erhöht wird, sollte die Laufzeit des Algorithmus auch um den
@@ -28,7 +28,7 @@ import (
 // des Eingabeparameters k ist. Mit anderen Worten, wenn die Größe des Eingabeparameters um den Faktor k
 // erhöht wird, sollte der Speicherbedarf des Algorithmus auch um den Faktor k erhöht werden.
 //
-//Lösung:
+// Lösung:
 // Es wird das Fenster betrachtet nicht die Werte. Dazu wird eine Que verwendet, die die Indizes der
 // Elemente enthält. Die Que ist sortiert, so dass das erste Element immer das größte Element des aktuellen Fensters ist.
 // Das nachfolgende Element enthält das größte Element für das Nachfolgende Fenster.
@@ -36,9 +36,12 @@ import (
 // Wenn ein neues Element hinzugefügt wird, wird das letzte Element entfernt, wenn es kleiner als das neue Element ist.
 // Die Liste enthält maximal k Elemente, so dass der Speicherbedarf O(k) ist.
 // Die Liste wird maximal n mal durchlaufen, so dass die Laufzeit O(n) ist.
-//
-
 func main() {
+	que()
+	slice()
+}
+
+func que() {
 	// v := []int{27, 9, 17, 2, 12, 8}
 	// 		   27, 9, 17
 	// 			   9, 17, 2
@@ -55,20 +58,20 @@ func main() {
 	start := time.Now()
 	//Itteriere durch die Liste...
 	for i, n := range v {
-		// Wenn der Zeiger aus den Fenster läuft, entferne das Element
+		// Wenn der Index aus den Fenster läuft, entferne diesen
 		for que.Len() > 0 && que.Front().Value.(int) <= i-k {
 			que.Remove(que.Front())
 		}
 
-		// Entferne das letzte Elemente, wenn es kleiner als das aktuelle Element ist
+		// Entferne den letzten Index, wenn der Wert auf den er Zeigt kleiner als das aktuelle Wert ist
 		for que.Len() > 0 && v[que.Back().Value.(int)] <= n {
 			que.Remove(que.Back())
 		}
 
-		// Füge das aktuelle Element hinzu
+		// Füge den Index des aktuelle Element hinzu
 		que.PushBack(i)
 
-		// Füge das Maximum zum Ergebnis hinzu
+		// Sobald das erste Fenster abgeschlossen ist füge das Maximum zum Ergebnis hinzu
 		if i >= k-1 {
 			result = append(result, v[que.Front().Value.(int)])
 		}
@@ -76,6 +79,52 @@ func main() {
 	end := time.Now()
 
 	//Ausgabe
+	fmt.Println("que")
+	fmt.Println("V = ", v)
+	fmt.Println("k = ", k)
+	fmt.Println(" => ", result)
+	fmt.Println("needed: ", end.Sub(start))
+}
+
+func slice() {
+	// v := []int{27, 9, 17, 2, 12, 8}
+	// 		   27, 9, 17
+	// 			   9, 17, 2
+	//				  17, 2, 12
+	// 					  2, 12, 8
+	// => [ 27 17 17 12 ]
+	v := []int{27, 9, 17, 2, 12, 8, 9, 10, 25, 29, 3, 8, 9, 8, 10}
+	// => [27 17 17 12 12 10 25 29 29 29 9 9 10]
+	k := 3
+
+	result := make([]int, 0, len(v)-k+1)
+	var que []int
+
+	start := time.Now()
+	//Itteriere durch die Liste...
+	for i := 0; i < len(v); i++ {
+		// Wenn der Index aus den Fenster läuft, entferne diesen
+		for len(que) > 0 && que[0] <= i-k {
+			que = que[1:] // Slice kopieren ohne das 0te Element (Elemente 1-len(que))
+		}
+
+		// Entferne den letzten Index, wenn der Wert auf den er Zeigt kleiner als das aktuelle Wert ist
+		for len(que) > 0 && v[que[len(que)-1]] <= v[i] {
+			que = que[:len(que)-1] // Slice kopieren ohne das letzte Element (Elemente 0-len(que)-1)
+		}
+
+		// Füge den Index des aktuelle Element hinzu
+		que = append(que, i)
+
+		// Sobald das erste Fenster abgeschlossen ist füge das Maximum zum Ergebnis hinzu
+		if i >= k-1 {
+			result = append(result, v[que[0]])
+		}
+	}
+	end := time.Now()
+
+	//Ausgabe
+	fmt.Println("slice")
 	fmt.Println("V = ", v)
 	fmt.Println("k = ", k)
 	fmt.Println(" => ", result)
