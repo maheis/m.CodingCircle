@@ -45,35 +45,66 @@ func main() {
 	//				  17, 2, 12
 	// 					  2, 12, 8
 	// => [ 27 17 17 12 ]
+	k := 3
 
 	// v := []int{27, 9, 17, 2, 12, 8, 9, 10, 25, 29, 3, 8, 9, 8, 10}
 	// => [27 17 17 12 12 10 25 29 29 29 9 9 10]
+	// k := 3
 
 	//Random
-	// cnt := 33333333
+	// cnt := 3333333
 	// v := make([]int, 0, cnt)
 	// for i := 0; i < cnt; i++ {
 	// 	v = append(v, rand.Intn(100))
 	// }
-
-	k := 3
+	// k := 3333
 
 	if len(v) < 42 {
 		fmt.Println("V = ", v)
 	}
 	fmt.Println("k = ", k)
 
+	resI := iterative(v, k)
 	resQ := que(v, k)
 	resS := slice(v, k)
 
 	for i := 0; i < len(resQ); i++ {
-		if resQ[i] != resS[i] {
+		if resQ[i] != resS[i] || resQ[i] != resI[i] {
 			fmt.Println("ERROR")
 			return
 		}
 	}
 
 	fmt.Println("OK")
+}
+
+func iterative(v []int, k int) []int {
+	result := make([]int, 0, len(v)-k+1)
+
+	start := time.Now()
+	// Schleife soll abzüglich der Fenstergröße k laufen
+	for i := 0; i < len(v)-k+1; i++ {
+		// Maximalwert im Fensters ermitteln, dazu die Fenstergröße voreilen
+		max := v[i]
+		for j := i + 1; j < i+k; j++ {
+			if v[j] > max {
+				max = v[j]
+			}
+		}
+		result = append(result, max)
+
+		// Im nächsten durchlauf wird das Fenster 1 nach vorne geschoben...
+	}
+	end := time.Now()
+
+	//Ausgabe
+	fmt.Println("iterative")
+	if len(result) < 42 {
+		fmt.Println(" => ", result)
+	}
+	fmt.Println("needed: ", end.Sub(start))
+
+	return result
 }
 
 func que(v []int, k int) []int {
