@@ -10,12 +10,12 @@ import (
 
 // Aufgabenstellung:
 // Gegeben sind eine Liste V und eine Ganzzahl k. Ermittle das laufende maximum für die Fenstergröße k.
-
+//
 // Beispiel:
 // V = [ 27, 9, 17, 2, 12, 8 ]
 // k = 3
 // => [ 27, 17, 17, 12 ]
-
+//
 // Bedingungen:
 // Die Laufzeit soll O(n) betragen, der Speicherbedarf soll O(k) betragen.
 //
@@ -36,23 +36,49 @@ import (
 // Wenn ein neues Element hinzugefügt wird, wird das letzte Element entfernt, wenn es kleiner als das neue Element ist.
 // Die Liste enthält maximal k Elemente, so dass der Speicherbedarf O(k) ist.
 // Die Liste wird maximal n mal durchlaufen, so dass die Laufzeit O(n) ist.
-func main() {
-	que()
-	slice()
-}
+//
 
-func que() {
-	// v := []int{27, 9, 17, 2, 12, 8}
+func main() {
+	v := []int{27, 9, 17, 2, 12, 8}
 	// 		   27, 9, 17
 	// 			   9, 17, 2
 	//				  17, 2, 12
 	// 					  2, 12, 8
 	// => [ 27 17 17 12 ]
-	v := []int{27, 9, 17, 2, 12, 8, 9, 10, 25, 29, 3, 8, 9, 8, 10}
+
+	// v := []int{27, 9, 17, 2, 12, 8, 9, 10, 25, 29, 3, 8, 9, 8, 10}
 	// => [27 17 17 12 12 10 25 29 29 29 9 9 10]
+
+	//Random
+	// cnt := 33333333
+	// v := make([]int, 0, cnt)
+	// for i := 0; i < cnt; i++ {
+	// 	v = append(v, rand.Intn(100))
+	// }
+
 	k := 3
 
+	if len(v) < 42 {
+		fmt.Println("V = ", v)
+	}
+	fmt.Println("k = ", k)
+
+	resQ := que(v, k)
+	resS := slice(v, k)
+
+	for i := 0; i < len(resQ); i++ {
+		if resQ[i] != resS[i] {
+			fmt.Println("ERROR")
+			return
+		}
+	}
+
+	fmt.Println("OK")
+}
+
+func que(v []int, k int) []int {
 	result := make([]int, 0, len(v)-k+1)
+
 	var que list.List
 
 	start := time.Now()
@@ -80,24 +106,17 @@ func que() {
 
 	//Ausgabe
 	fmt.Println("que")
-	fmt.Println("V = ", v)
-	fmt.Println("k = ", k)
-	fmt.Println(" => ", result)
+	if len(result) < 42 {
+		fmt.Println(" => ", result)
+	}
 	fmt.Println("needed: ", end.Sub(start))
+
+	return result
 }
 
-func slice() {
-	// v := []int{27, 9, 17, 2, 12, 8}
-	// 		   27, 9, 17
-	// 			   9, 17, 2
-	//				  17, 2, 12
-	// 					  2, 12, 8
-	// => [ 27 17 17 12 ]
-	v := []int{27, 9, 17, 2, 12, 8, 9, 10, 25, 29, 3, 8, 9, 8, 10}
-	// => [27 17 17 12 12 10 25 29 29 29 9 9 10]
-	k := 3
-
+func slice(v []int, k int) []int {
 	result := make([]int, 0, len(v)-k+1)
+
 	var que []int
 
 	start := time.Now()
@@ -125,8 +144,10 @@ func slice() {
 
 	//Ausgabe
 	fmt.Println("slice")
-	fmt.Println("V = ", v)
-	fmt.Println("k = ", k)
-	fmt.Println(" => ", result)
+	if len(result) < 42 {
+		fmt.Println(" => ", result)
+	}
 	fmt.Println("needed: ", end.Sub(start))
+
+	return result
 }
