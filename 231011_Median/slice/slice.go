@@ -33,11 +33,13 @@ func ContinuousMedian(values []int) []float64 {
 }
 
 func Median(values []int) float64 {
+	n := len(values)
+
 	// Grade
-	if len(values)%2 == 0 {
+	if n%2 == 0 {
 		// Mittelwert der beiden mittleren Werte
-		return float64(values[len(values)/2-1]+values[len(values)/2]) / 2
+		return float64(values[n/2-1]+values[n/2]) / 2.0
 	}
 	// Ungrade
-	return float64(values[len(values)/2])
+	return float64(values[n/2])
 }
