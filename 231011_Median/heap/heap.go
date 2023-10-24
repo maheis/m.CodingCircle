@@ -58,9 +58,7 @@ func ContinuousMedian(values []int) []float64 {
 
 	for _, num := range values {
 		// Value in den Heap packen, der weniger Elemente hat
-		// Wenn der maxHeap noch leer ist oder die Zahl kleiner als das größte Element im maxHeap ist
-		if maxHeap.Len() == 0 || num <= maxHeap[0] {
-			// Packe es auf den MaxHeap
+		if maxHeap.Len() <= minHeap.Len() {
 			heap.Push(&maxHeap, num)
 		} else {
 			heap.Push(&minHeap, num)
@@ -74,11 +72,11 @@ func ContinuousMedian(values []int) []float64 {
 		}
 
 		// Ermittel den Median
-		if maxHeap.Len() == minHeap.Len() {
+		if maxHeap.Len() == minHeap.Len() { // gerade Anzahl an Elementen
 			medians = append(medians, float64(maxHeap[0]+minHeap[0])/2.0)
-		} else if maxHeap.Len() > minHeap.Len() {
+		} else if maxHeap.Len() > minHeap.Len() { // ungerade Anzahl an Elementen
 			medians = append(medians, float64(maxHeap[0]))
-		} else {
+		} else { // ungerade Anzahl an Elementen
 			medians = append(medians, float64(minHeap[0]))
 		}
 	}
