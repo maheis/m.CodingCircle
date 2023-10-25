@@ -20,33 +20,36 @@ Laufteit O(n²), Speicher O(n), Single-Pass
 # Notizen
 ```
 Beispiel:
-    0 1 2 **X**
-  0 #    
+    0 1 2
+  0 #   # 
   1   #  
-  2 #   #
-  **Y**
+  2     #
 
 Mögliche Lösungskoordinaten:
-  Vertikal:
+  Horizontal:
     0,0, 0,1 0,2
     1,0, 1,1 1,2
     2,0, 2,1 2,2
   Diagonal:
     0,0, 1,1 2,2
     0,2, 1,1 2,0
-  Horizontal:
+  Vertikal:
     0,0, 1,0 2,0
     0,1, 1,1 2,1
     0,2, 1,2 2,2
 
 n = 5
-  0 1 2 3 4 5 **X**
+  0 1 2 3 4 5
   1 - - - - -
   2 - - - - -
   3 - - - - -
   4 - - - - -
   5 - - - - -
-  **Y**
  ```
 
 # Lösung
+
+## Idee 1
+Spielfeld mit seinen Lösungsmöglichkeiten Aufbauen und dann die Koordinaten vergleichen?
+
+## Idee 2
