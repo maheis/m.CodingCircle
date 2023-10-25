@@ -7,10 +7,12 @@ Gesucht ist eine Funktion, die für ein Spielfeld der Größe n*n ent-
 scheidet, ob die Koordinaten eine Gewinnposition enthalten.
 
 ## Beispiel:
+```
 n = 3; 
 coords [
     (0,0), (0,2), (1,1), (2,2)
 ] => true
+```
 
 ## Bedingungen:
 Laufteit O(n²), Speicher O(n), Single-Pass
