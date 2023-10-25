@@ -20,10 +20,11 @@ Laufteit O(n²), Speicher O(n), Single-Pass
 # Notizen
 ```
 Beispiel:
-    0 1 2
-  0 X    
-  1   X  
-  2 X   X
+    0 1 2 **X**
+  0 #    
+  1   #  
+  2 #   #
+  **Y**
 
 Mögliche Lösungskoordinaten:
   Vertikal:
@@ -39,12 +40,13 @@ Mögliche Lösungskoordinaten:
     0,2, 1,2 2,2
 
 n = 5
-  0 1 2 3 4 5
+  0 1 2 3 4 5 **X**
   1 - - - - -
   2 - - - - -
   3 - - - - -
   4 - - - - -
   5 - - - - -
+  **Y**
  ```
 
 # Lösung
