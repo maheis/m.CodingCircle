@@ -10,22 +10,42 @@ func main() {
 	n := 3
 	c := []Cord{{0, 0}, {0, 2}, {1, 1}, {2, 2}}
 
-	printBoard(c, n)
+	board := createBoard(n)
+	fillBoard(board, c)
+
+	printBoard(board)
 }
 
-func printBoard(c []Cord, n int) {
-	//Header
+func createBoard(n int) [][]int {
+	//Erstellt ein 2D Array mit der Größe n*n und füllt es mit 0
+	board := make([][]int, n)
+	for i := range board {
+		board[i] = make([]int, n)
+	}
+	return board
+}
+
+func fillBoard(b [][]int, c []Cord) [][]int {
+	//Füllt das Board mit den Koordinaten
+	for _, v := range c {
+		b[v.i][v.j] = 1
+	}
+	return b
+}
+
+func printBoard(b [][]int) {
+	//Header (X-Achse)
 	fmt.Print("  ")
-	for i := 0; i < n; i++ {
+	for i := 0; i < len(b); i++ {
 		fmt.Print(i, " ")
 	}
 	fmt.Println()
 
 	//Ausgabe der Koordinaten
-	for i := 0; i < n; i++ {
+	for i := 0; i < len(b); i++ {
 		fmt.Print(i, " ")
-		for j := 0; j < n; j++ {
-			if contains(c, Cord{i, j}) {
+		for j := 0; j < len(b); j++ {
+			if b[i][j] == 1 {
 				fmt.Print("X ")
 			} else {
 				fmt.Print("- ")
@@ -33,14 +53,4 @@ func printBoard(c []Cord, n int) {
 		}
 		fmt.Println()
 	}
-}
-
-func contains(c []Cord, e Cord) bool {
-	//Vergleicht die aktuelle Koordinate e mit den Koordinaten in der Liste
-	for _, a := range c {
-		if a == e {
-			return true
-		}
-	}
-	return false
 }
