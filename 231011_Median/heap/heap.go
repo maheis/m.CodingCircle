@@ -13,6 +13,8 @@ import (
 	"time"
 )
 
+// ##### Start: Implementierung des Interfaces heap.Interface aus container/heap #####
+
 type MaxHeap []int
 
 func NewMaxHeap() MaxHeap {
@@ -30,6 +32,10 @@ func (h *MaxHeap) Pop() any {
 	*h = old[0:n]     // Alles bis auf das letzte Element als Rückgabe in den (ByRef) Heap zurückschreiben
 	return old[n]     // Letztes Element zurückgeben
 }
+
+// ##### Ende: Implementierung des Interfaces heap.Interface aus container/heap #####
+
+// ##### Start: Implementierung des Interfaces heap.Interface aus container/heap #####
 
 type MinHeap []int
 
@@ -49,6 +55,8 @@ func (h *MinHeap) Pop() any {
 	return old[n]
 }
 
+// ##### Ende: Implementierung des Interfaces heap.Interface aus container/heap #####
+
 func ContinuousMedian(values []int) []float64 {
 	// Liste der Medians
 	medians := make([]float64, 0, len(values))
@@ -56,19 +64,25 @@ func ContinuousMedian(values []int) []float64 {
 	maxHeap := NewMaxHeap() // linke Hälfte, sortiert absteigend (höchstes Element ist das erste Element)
 	minHeap := NewMinHeap() // rechte Hölfte, sortiert aufsteigend (niedrigstes Element ist das erste Element)
 
+	// Funktionen auf maxHeap und minHeap werden nicht mit z.B. maxHeap.Push() aufgerufen, sondern mit heap.Push(&maxHeap, ...)
+	// Die eigentliche Implementierung von maxHeap.Push() ist im Interface container/heap.Push() zu finden!
+	// Es müssen Pointer übergeben werden, da die Funktionen auf dem Heap arbeiten und die Änderungen sonst nicht sichtbar wären.
+	// siehe Dazu weiter unten Markierungen // <<-- hier
+
 	for _, num := range values {
 		// Value in den Heap packen, der weniger Elemente hat
+		// Wenn beide Heaps gleich viele Elemente haben, dann in den MaxHeap
 		if maxHeap.Len() <= minHeap.Len() {
-			heap.Push(&maxHeap, num)
+			heap.Push(&maxHeap, num) // <<-- hier
 		} else {
-			heap.Push(&minHeap, num)
+			heap.Push(&minHeap, num) // <<-- hier
 		}
 
 		// Balanciere die Heaps aus
 		if maxHeap.Len()-minHeap.Len() > 1 {
-			heap.Push(&minHeap, heap.Pop(&maxHeap))
+			heap.Push(&minHeap, heap.Pop(&maxHeap)) // <<-- hier
 		} else if minHeap.Len()-maxHeap.Len() > 1 {
-			heap.Push(&maxHeap, heap.Pop(&minHeap))
+			heap.Push(&maxHeap, heap.Pop(&minHeap)) // <<-- hier
 		}
 
 		// Ermittel den Median
