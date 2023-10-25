@@ -1,20 +1,22 @@
-# 25.10.2023 - https://www.youtube.com/watch?v=ofs5v4jXa-k
+# 25.10.2023 - TicTacToe
+https://www.youtube.com/watch?v=ofs5v4jXa-k
 
 # Aufgabenstellung:
 Gegeben seien die Spielfeldlänge n und eine Liste von Koordinaten.
 Gesucht ist eine Funktion, die für ein Spielfeld der Größe n*n ent-
 scheidet, ob die Koordinaten eine Gewinnposition enthalten.
 
-# Beispiel:
-n = 3
-[
+## Beispiel:
+n = 3; 
+coords [
     (0,0), (0,2), (1,1), (2,2)
 ] => true
 
-# Bedingungen:
+## Bedingungen:
 Laufteit O(n²), Speicher O(n), Single-Pass
 
 # Notizen
+```
 Beispiel:
    0 1 2
  0 X    
@@ -41,5 +43,6 @@ n = 5
  3 - - - - -
  4 - - - - -
  5 - - - - -
+ ```
 
 # Lösung
