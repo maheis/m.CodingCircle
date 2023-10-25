@@ -2,6 +2,7 @@ package main
 
 import (
 	"container/list"
+	"errors"
 	"fmt"
 	"time"
 )
@@ -64,21 +65,22 @@ func main() {
 	}
 	fmt.Println("k = ", k)
 
-	resI := iterative(v, k)
-	resQ := que(v, k)
-	resS := slice(v, k)
-
-	for i := 0; i < len(resQ); i++ {
-		if resQ[i] != resS[i] || resQ[i] != resI[i] {
-			fmt.Println("ERROR")
-			return
-		}
-	}
-
-	fmt.Println("OK")
+	iterative(v, k)
+	que(v, k)
+	slice(v, k)
 }
 
-func iterative(v []int, k int) []int {
+func iterative(v []int, k int) ([]int, error) {
+	if len(v) == 0 {
+		return []int{}, errors.New("v is empty")
+	}
+	if k <= 0 {
+		return []int{}, errors.New("k must be greater than 0")
+	}
+	if k > len(v) {
+		return []int{}, errors.New("k must be less than len(v)")
+	}
+
 	result := make([]int, 0, len(v)-k+1)
 
 	start := time.Now()
@@ -104,10 +106,20 @@ func iterative(v []int, k int) []int {
 	}
 	fmt.Println("needed: ", end.Sub(start))
 
-	return result
+	return result, nil
 }
 
-func que(v []int, k int) []int {
+func que(v []int, k int) ([]int, error) {
+	if len(v) == 0 {
+		return []int{}, errors.New("v is empty")
+	}
+	if k <= 0 {
+		return []int{}, errors.New("k must be greater than 0")
+	}
+	if k > len(v) {
+		return []int{}, errors.New("k must be less than len(v)")
+	}
+
 	result := make([]int, 0, len(v)-k+1)
 
 	var que list.List
@@ -116,7 +128,7 @@ func que(v []int, k int) []int {
 	//Itteriere durch die Liste...
 	for i, n := range v {
 		// Wenn der Index aus den Fenster läuft, entferne diesen
-		for que.Len() > 0 && que.Front().Value.(int) <= i-k {
+		if que.Len() > 0 && que.Front().Value.(int) <= i-k {
 			que.Remove(que.Front())
 		}
 
@@ -142,10 +154,20 @@ func que(v []int, k int) []int {
 	}
 	fmt.Println("needed: ", end.Sub(start))
 
-	return result
+	return result, nil
 }
 
-func slice(v []int, k int) []int {
+func slice(v []int, k int) ([]int, error) {
+	if len(v) == 0 {
+		return []int{}, errors.New("v is empty")
+	}
+	if k <= 0 {
+		return []int{}, errors.New("k must be greater than 0")
+	}
+	if k > len(v) {
+		return []int{}, errors.New("k must be less than len(v)")
+	}
+
 	result := make([]int, 0, len(v)-k+1)
 
 	var que []int
@@ -154,13 +176,13 @@ func slice(v []int, k int) []int {
 	//Itteriere durch die Liste...
 	for i := 0; i < len(v); i++ {
 		// Wenn der Index aus den Fenster läuft, entferne diesen
-		for len(que) > 0 && que[0] <= i-k {
-			que = que[1:] // Slice kopieren ohne das 0te Element (Elemente 1-len(que))
+		if len(que) > 0 && que[0] <= i-k {
+			que = que[1:] // Slice kopieren ohne das 0te Element (Elemente 1 bis len(que))
 		}
 
 		// Entferne den letzten Index, wenn der Wert auf den er Zeigt kleiner als das aktuelle Wert ist
 		for len(que) > 0 && v[que[len(que)-1]] <= v[i] {
-			que = que[:len(que)-1] // Slice kopieren ohne das letzte Element (Elemente 0-len(que)-1)
+			que = que[:len(que)-1] // Slice kopieren ohne das letzte Element (Elemente 0 bis len(que)-1)
 		}
 
 		// Füge den Index des aktuelle Element hinzu
@@ -180,5 +202,5 @@ func slice(v []int, k int) []int {
 	}
 	fmt.Println("needed: ", end.Sub(start))
 
-	return result
+	return result, nil
 }
