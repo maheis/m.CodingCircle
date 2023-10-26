@@ -1,1 +1,3 @@
 - [ ] Refactor code + add tests
+- [ ] Lösung mit Binärsummen?
+- [ ] Lösung über Col/Row-Sum

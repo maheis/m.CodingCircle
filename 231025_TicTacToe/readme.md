@@ -15,7 +15,7 @@ coords [
 ```
 
 ## Bedingungen:
-Laufteit O(n²), Speicher O(n), Single-Pass
+Laufzeit O(n²), Speicher O(n), Single-Pass
 <sub>Golo: Singlepass heißt, dass Du eigentlich nur eine einzige Schleife haben solltest, in der Du jedes Element einmal triffst. Da das Spielfeld aber quadratisch ist, entspricht die Anzahl der Schleifendurchläufe – je nach Implementierung – eventuell nicht n, sondern n^2. Daher die Forderung mit quadratischer Laufzeit.</sub>
 
 # Skizze:
@@ -57,3 +57,10 @@ n = 3
   =   =   =   = =
 84   73 146 292   273
 ```
+
+Es ist ausreichend zu zählen wie oft eine Spalte, Zeile oder Diagonale besetzt ist. Wenn die Anzahl der Besetzungen gleich der Spielfeldgröße ist, dann ist die Gewinnbedingung erfüllt. 
+Zugrunde liegt der Lösung die Gewinnregeln von TicTacToe. Es gibt 3 Gewinnmöglichkeiten:
+- Horizontal linie
+- Vertikal linie
+- Diagonal linie
+Setzt aber vorraus das keien Koordinate doppelt vorkommt! Aber das lässt sich ja leicht prüfen.
