@@ -1,4 +1,4 @@
-package main
+package tictactoe_test
 
 import "testing"
 
