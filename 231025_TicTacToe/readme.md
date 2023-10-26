@@ -18,7 +18,7 @@ coords [
 Laufteit O(n²), Speicher O(n), Single-Pass
 <sub>Golo: Singlepass heißt, dass Du eigentlich nur eine einzige Schleife haben solltest, in der Du jedes Element einmal triffst. Da das Spielfeld aber quadratisch ist, entspricht die Anzahl der Schleifendurchläufe – je nach Implementierung – eventuell nicht n, sondern n^2. Daher die Forderung mit quadratischer Laufzeit.</sub>
 
-# Notizen
+# Skizze:
 ```
 Beispiel:
     0 1 2
@@ -38,24 +38,15 @@ Mögliche Lösungskoordinaten:
     0,0, 1,0 2,0
     0,1, 1,1 2,1
     0,2, 1,2 2,2
-
-n = 5
-    0 1 2 3 4
-  0 - - - - -
-  1 - - - - -
-  2 - - - - -
-  3 - - - - -
-  4 - - - - -
 ```
 
-Muss man die Koordinaten nicht ähnlich wie bei Hottest in Fenstern prüfen? Immer jeweils n Koordinaten und dann die nächste Reihe?
+# Lösung:
+Spielfeld aufbauen und in 3 Wegen durchlaufen:
+- Horizontal
+- Vertikal
+- Diagonal
 
-# Lösung
-
-## Idee 1
-Spielfeld mit seinen Lösungsmöglichkeiten Aufbauen und dann die Koordinaten vergleichen?
-
-## Idee 2
+# Notizen:
 Kann man nicht Binärsummen verwenden? Die sind ja Eindeutig und könnten im laufen berechnet werden.
 ```
 n = 3
@@ -66,20 +57,3 @@ n = 3
   =   =   =   = =
 84   73 146 292   273
 ```
-
-## Idee 3
-Eine Map mit Key = Koordinate ?
-Value = Anzahl der Koordinaten in der Zeile, Spalte oder Diagonale <- Was will CoPilot mir damit sagen?
-
-## Idee 4
-(Wenn die Koordinaten in korrekter Reihenfolge kommen)
-Prüfen ob es eine Kooordinate gibt, die angenzend sind?
-cord = (x,y)
-cord = (x++,y) (x,y++) (x++,y++) ?
-
-## Idee 5
-Spielfeld in 3 Listen aufteilen:
-- Horizontal
-- Vertikal
-- Diagonal
-Listen durchlaufen und prüfen ob die Koordinaten in der Liste sind.
