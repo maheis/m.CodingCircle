@@ -1,3 +1,10 @@
 - [x] Refactor code + add tests
 - [ ] Lösung mit Binärsummen?
 - [ ] Lösung über Col/Row-Sum
+- [x] makefile
+-   [x] tests
+-   [x] coverage
+-   [x] analyze
+-   [x] build
+- [ ] CI
+- [ ] Performance Statistic O(n) vs. O(n^2)

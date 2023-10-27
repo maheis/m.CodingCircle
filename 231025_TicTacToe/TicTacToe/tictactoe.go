@@ -15,7 +15,7 @@ type Coord struct {
 	X, Y int
 }
 
-// Baut das Spiel auf und überprüft ob jemand gewonnen hat
+// CheckGame Baut das Spiel auf und überprüft ob jemand gewonnen hat
 func CheckGame(n int, c []Coord) (bool, error) {
 	err := checkInput(n, c)
 	if err != nil {
