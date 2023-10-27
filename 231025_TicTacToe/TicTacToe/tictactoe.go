@@ -6,10 +6,10 @@ import (
 )
 
 var ErrNoCoords = errors.New("no coordinates given")
-var ErrCoordsOutOfRange = errors.New("coordinates out of range")
 var ErrBoardToSmall = errors.New("n must be greater than 0")
 var ErrNotEnoughCoords = errors.New("not enough coordinates")
 var ErrToMuchCoords = errors.New("to much coordinates")
+var ErrCoordsOutOfRange = errors.New("coordinates out of range")
 
 type Coord struct {
 	X, Y int
@@ -44,16 +44,16 @@ func checkInput(n int, c []Coord) error {
 		return ErrNoCoords
 	}
 
+	if n <= 0 {
+		return ErrBoardToSmall
+	}
+
 	if len(c) < n {
 		return ErrNotEnoughCoords
 	}
 
 	if len(c) > n*n {
 		return ErrToMuchCoords
-	}
-
-	if n <= 0 {
-		return ErrBoardToSmall
 	}
 
 	for _, v := range c {
