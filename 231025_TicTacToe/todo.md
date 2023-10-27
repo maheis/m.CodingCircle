@@ -1,6 +1,6 @@
 - [x] Refactor code + add tests
 - [ ] Lösung mit Binärsummen?
-- [ ] Lösung über Col/Row-Sum
+- [x] Lösung über Koordinaten-Summe
 - [x] makefile
     - [x] tests
     - [x] coverage

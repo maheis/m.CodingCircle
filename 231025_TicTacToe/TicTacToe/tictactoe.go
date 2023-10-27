@@ -25,7 +25,7 @@ func CheckGame(n int, c []Coord) (bool, error) {
 
 	b := createBoard(n)
 	fillBoard(b, c)
-	res := checkWin(b)
+	res := checkWinBoard(b)
 
 	printBoard(b)
 	if res {
@@ -38,7 +38,7 @@ func CheckGame(n int, c []Coord) (bool, error) {
 	return res, nil
 }
 
-// Überprüft ob die Eingaben korrekt sind
+// checkInput überprüft ob die Eingaben korrekt sind
 func checkInput(n int, c []Coord) error {
 	if len(c) == 0 {
 		return ErrNoCoords
@@ -64,7 +64,7 @@ func checkInput(n int, c []Coord) error {
 	return nil
 }
 
-// Erstellt ein 2D Array mit der Größe n*n und füllt es mit 0
+// createBoard erstellt ein 2D Array mit der Größe n*n und füllt es mit 0
 func createBoard(n int) [][]int {
 	board := make([][]int, n)
 	for i := range board {
@@ -73,7 +73,7 @@ func createBoard(n int) [][]int {
 	return board
 }
 
-// Füllt das Board mit den Koordinaten
+// fillBoard füllt das Board mit den Koordinaten
 func fillBoard(b [][]int, c []Coord) [][]int {
 	for _, v := range c {
 		b[v.X][v.Y] = 1
@@ -81,7 +81,7 @@ func fillBoard(b [][]int, c []Coord) [][]int {
 	return b
 }
 
-// Gibt das Board aus
+// printBoard gibt das Board aus
 func printBoard(b [][]int) {
 	//Header (X-Achse)
 	fmt.Print("  ")
@@ -104,23 +104,19 @@ func printBoard(b [][]int) {
 	}
 }
 
-// Überprüft ob jemand gewonnen hat
-func checkWin(b [][]int) bool {
-	var d1, d2 int
+// checkWinBoard überprüft ein Übergebenes Board auf den Gewinn
+func checkWinBoard(b [][]int) bool {
+	var d1, d2 int // Diagonal \, Diagonal /
 
 	for i := 0; i < len(b); i++ {
-		var h, v int
+		var h, v int //Horizontal, Vertikal
 
 		for j := 0; j < len(b); j++ {
-			//Horizontal
 			h += b[i][j]
-			//Vertikal
 			v += b[j][i]
-			//Diagonal \
 			if i == j {
 				d1 += b[i][j]
 			}
-			//Diagonal /
 			if i+j == len(b)-1 {
 				d2 += b[i][j]
 			}
@@ -131,5 +127,29 @@ func checkWin(b [][]int) bool {
 		}
 	}
 
+	return false
+}
+
+// checkWinCoords überprüft ein Übergebenes Board n und die Eingabekoodrinaten auf den Gewinn
+func checkWinCoords(n int, c []Coord) bool {
+	h := make([]int, n) //Horizontal
+	v := make([]int, n) //Vertikal
+	d1 := 0             // Diagonal \
+	d2 := 0             // Diagonal /
+
+	for _, field := range c {
+		h[field.X]++
+		v[field.Y]++
+		if field.X == field.Y {
+			d1++
+		}
+		if field.X+field.Y == n-1 {
+			d2++
+		}
+
+		if h[field.X] == n || v[field.Y] == n || d1 == n || d2 == n {
+			return true
+		}
+	}
 	return false
 }
