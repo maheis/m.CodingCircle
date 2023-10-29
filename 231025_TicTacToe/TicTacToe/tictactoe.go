@@ -106,23 +106,24 @@ func printBoard(b [][]int) {
 
 // checkWinBoard überprüft ein Übergebenes Board auf den Gewinn
 func checkWinBoard(b [][]int) bool {
+	n := len(b)
 	var d1, d2 int // Diagonal \, Diagonal /
 
-	for i := 0; i < len(b); i++ {
+	for i := 0; i < n; i++ {
 		var h, v int //Horizontal, Vertikal
 
-		for j := 0; j < len(b); j++ {
+		for j := 0; j < n; j++ {
 			h += b[i][j]
 			v += b[j][i]
 			if i == j {
 				d1 += b[i][j]
 			}
-			if i+j == len(b)-1 {
+			if i+j == n-1 {
 				d2 += b[i][j]
 			}
 		}
 
-		if h == len(b) || v == len(b) || d1 == len(b) || d2 == len(b) {
+		if h == n || v == n || d1 == n || d2 == n {
 			return true
 		}
 	}

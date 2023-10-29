@@ -22,9 +22,9 @@ Laufzeit O(n²), Speicher O(n), Single-Pass
 ```
 Beispiel:
     0 1 2
-  0 #   # 
-  1   #  
-  2     #
+  0 X   X 
+  1   X  
+  2     X
 
 Mögliche Lösungskoordinaten:
   Horizontal:
@@ -41,10 +41,19 @@ Mögliche Lösungskoordinaten:
 ```
 
 # Lösung:
+## Board
 Spielfeld aufbauen und in 3 Wegen durchlaufen:
 - Horizontal
 - Vertikal
 - Diagonal
+
+## Koordinaten-Summe
+Zählen wie oft eine Spalte, Zeile oder Diagonale besetzt ist. Wenn die Anzahl der Besetzungen gleich der Spielfeldgröße ist, dann ist die Gewinnbedingung erfüllt. 
+Zugrunde liegt der Lösung die Gewinnregeln von TicTacToe. Es gibt 3 Gewinnmöglichkeiten:
+- Horizontal linie
+- Vertikal linie
+- Diagonal linie
+Setzt aber vorraus das keien Koordinate doppelt vorkommt!
 
 # Notizen:
 Kann man nicht Binärsummen verwenden? Die sind ja Eindeutig und könnten im laufen berechnet werden.
@@ -58,9 +67,34 @@ n = 3
 84   73 146 292   273
 ```
 
-Es ist ausreichend zu zählen wie oft eine Spalte, Zeile oder Diagonale besetzt ist. Wenn die Anzahl der Besetzungen gleich der Spielfeldgröße ist, dann ist die Gewinnbedingung erfüllt. 
-Zugrunde liegt der Lösung die Gewinnregeln von TicTacToe. Es gibt 3 Gewinnmöglichkeiten:
-- Horizontal linie
-- Vertikal linie
-- Diagonal linie
-Setzt aber vorraus das keien Koordinate doppelt vorkommt! Aber das lässt sich ja leicht prüfen.
+# Performance:
+
+## Szenario 1
+Beide Routinen müssen nur eine Zeile durchlaufen.
+In dem Fall würde ich erwarten das die Performance beider Routinen nahezu gleich ist.
+```
+  0 1 2
+0 X X X
+1  
+2 
+```
+
+## Szenario 2
+Die eine Routine muss eine Zeile durchlaufen, die andere Routine muss alle Felder durchlaufen!
+In dem Fall würde ich erwarten das die Performance stark differiert.
+```
+  0 1 2
+0
+1
+2 X X X
+```
+
+## Szenario 3
+Die eine Routine muss einen Coordinatensatz durchlaufen, die andere Routine muss alle Felder durchlaufen!
+In dem Fall würde ich erwarten das die Performance stark differiert.
+```
+  0 1 2
+0 X 
+1   X
+2     X
+```
