@@ -52,6 +52,7 @@ func performance(f func(int) []Coord, print bool, rounds int) {
 		b = createBoard(n)
 		fillBoard(b, c)
 		printBoard(b)
+		//Beide Funktionen aufrufen, damit nicht eine als "uncalled function" erkannt wird
 		checkWinBoard(b)
 		checkWinCoords(n, c)
 	}
