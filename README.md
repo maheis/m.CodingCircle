@@ -1,4 +1,4 @@
-# CodingCircle
+# 🇩🇪 CodingCircle
 In diesem Repository veröffentliche ich **meine** Lösungen zu den Aufgaben des [the native web](https://thenativeweb.io/) CodingCircle.
 
 Der CodingCircle ist eine Kanalmitgliedsstufe des YouTube Kanals [@thenativeweb](https://www.youtube.com/@thenativeweb).
