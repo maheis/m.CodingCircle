@@ -1,3 +1,3 @@
 module github.com/maheis/CodingCircle/231011_Median
 
-go 1.21.2
+go 1.24
